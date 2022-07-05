@@ -1,23 +1,21 @@
-const Ship = (length) => {
-  let array;
+const Ship = (length, char) => {
+  let hp = length;
+  let isAlive = true;
 
-  if (length >= 1 && length <= 5) { array = Array.from('o'.repeat(length)); }
-
-  const hit = (cord) => {
-    array[cord - 1] = 'x';
+  const hit = () => {
+    hp -= 1;
   };
 
-  const getArray = () => array;
+  const getHP = () => hp;
 
   const isSunk = () => {
-    let parts = 0;
-    array.forEach((cord) => {
-      if (cord === 'x') parts += 1;
-    });
-    return (parts === array.length);
+    if (!hp) isAlive = false;
+    return !hp;
   };
 
-  return { getArray, hit, isSunk };
+  return {
+    getHP, hit, isSunk, length, char, isAlive,
+  };
 };
 
 export { Ship };
