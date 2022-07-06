@@ -1,4 +1,4 @@
-import { Gameboard, Ship } from '../battleship';
+import { Gameboard, Player, Ship } from '../battleship';
 
 describe('Ship factory function', () => {
   test('hit function (1) single hit', () => {
@@ -77,9 +77,8 @@ describe('Gameboard factory function', () => {
 
     gameboard.placeShip(ship, 0, 0, false);
 
-    gameboard.receiveAttack(0, 1);
-    gameboard.receiveAttack(0, 2);
-
+    expect(gameboard.receiveAttack(0, 1)).toBe(true);
+    expect(gameboard.receiveAttack(0, 2)).toBe(true);
     expect(gameboard.array[0]).toStrictEqual(['z', 'x', 'x', 'o', 'o', 'o', 'o', 'o', 'o', 'o']);
   });
 
@@ -89,7 +88,7 @@ describe('Gameboard factory function', () => {
 
     gameboard.placeShip(ship, 0, 0, false);
 
-    gameboard.receiveAttack(0, 3);
+    expect(gameboard.receiveAttack(0, 3)).toBe(true);
 
     expect(gameboard.array[0]).toStrictEqual(['z', 'z', 'z', 'm', 'o', 'o', 'o', 'o', 'o', 'o']);
   });
@@ -100,8 +99,7 @@ describe('Gameboard factory function', () => {
 
     gameboard.placeShip(ship, 0, 0, false);
 
-    gameboard.receiveAttack(0, 0);
-
+    expect(gameboard.receiveAttack(0, 0)).toBe(true);
     expect(ship.getHP()).toBe(2);
   });
 
@@ -111,8 +109,7 @@ describe('Gameboard factory function', () => {
 
     gameboard.placeShip(ship, 0, 0, false);
 
-    gameboard.receiveAttack(0, 3);
-
+    expect(gameboard.receiveAttack(0, 3)).toBe(true);
     expect(ship.getHP()).toBe(3);
   });
 
@@ -122,8 +119,7 @@ describe('Gameboard factory function', () => {
 
     gameboard.placeShip(ship, 0, 0, false);
 
-    gameboard.receiveAttack(0, 0);
-
+    expect(gameboard.receiveAttack(0, 0)).toBe(true);
     expect(() => { gameboard.receiveAttack(0, 0); }).toThrow(Error);
     expect(ship.getHP()).toBe(2);
   });
@@ -131,8 +127,7 @@ describe('Gameboard factory function', () => {
   test('receiveAttack function (6) hitting twice (2)', () => {
     const gameboard = Gameboard();
 
-    gameboard.receiveAttack(0, 0);
-
+    expect(gameboard.receiveAttack(0, 0)).toBe(true);
     expect(() => { gameboard.receiveAttack(0, 0); }).toThrow(Error);
   });
 
@@ -161,5 +156,21 @@ describe('Gameboard factory function', () => {
     ship1.hit();
 
     expect(gameboard.allShipsSunk()).toBe(false);
+  });
+});
+
+describe('Player factory function', () => {
+  test('move function', () => {
+    const gameboard = Gameboard();
+    const player = Player(gameboard);
+
+    expect(player.move(0, 0)).toBe(true);
+    expect(gameboard.array[0]).toStrictEqual(['m', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o']);
+  });
+
+  describe('UI', () => {
+    test.skip('autoMove function', () => {
+
+    });
   });
 });
