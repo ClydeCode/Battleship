@@ -36,13 +36,15 @@ const Gameboard = () => {
 
   const receiveAttack = (y, x) => {
     const tempChar = array[y][x];
-    array[y][x] = 'm';
-    ships.forEach((ship) => {
-      if (tempChar === ship.char) {
-        ship.hit();
-        array[y][x] = 'x';
-      }
-    });
+    if (array[y][x] !== 'm' && array[y][x] !== 'x') {
+      array[y][x] = 'm';
+      ships.forEach((ship) => {
+        if (tempChar === ship.char) {
+          ship.hit();
+          array[y][x] = 'x';
+        }
+      });
+    } else { throw Error('xd'); }
   };
 
   const allShipsSunk = () => {
