@@ -116,7 +116,7 @@ describe('Gameboard factory function', () => {
     expect(ship.getHP()).toBe(3);
   });
 
-  test('receiveAttack function (5) hitting twice', () => {
+  test('receiveAttack function (5) hitting twice (1)', () => {
     const gameboard = Gameboard();
     const ship = Ship(3, 'z');
 
@@ -126,6 +126,14 @@ describe('Gameboard factory function', () => {
 
     expect(() => { gameboard.receiveAttack(0, 0); }).toThrow(Error);
     expect(ship.getHP()).toBe(2);
+  });
+
+  test('receiveAttack function (6) hitting twice (2)', () => {
+    const gameboard = Gameboard();
+
+    gameboard.receiveAttack(0, 0);
+
+    expect(() => { gameboard.receiveAttack(0, 0); }).toThrow(Error);
   });
 
   test('allShipsSunk function (1) all ships are sunk', () => {
