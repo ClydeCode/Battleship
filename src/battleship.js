@@ -44,7 +44,8 @@ const Gameboard = () => {
           array[y][x] = 'x';
         }
       });
-    } else { throw Error('xd'); }
+    } else { throw Error('You can\t hit the same place twice!'); }
+    return true;
   };
 
   const allShipsSunk = () => {
@@ -57,4 +58,20 @@ const Gameboard = () => {
   };
 };
 
-export { Ship, Gameboard };
+const Player = (eGameboard, isBot = false) => {
+  const move = (y, x) => eGameboard.receiveAttack(y, x);
+
+  const generateNumber = () => Math.floor(Math.random() * 10);
+
+  const autoMove = () => {
+    if (isBot) {
+      while (!move(generateNumber(), generateNumber())) {
+        move(generateNumber(), generateNumber());
+      }
+    }
+  };
+
+  return { move, autoMove };
+};
+
+export { Ship, Gameboard, Player };
