@@ -44,7 +44,7 @@ const Gameboard = () => {
           array[y][x] = 'x';
         }
       });
-    } else { throw Error('You can\t hit the same place twice!'); }
+    } else return false;
     return true;
   };
 
@@ -65,8 +65,8 @@ const Player = (eGameboard, isBot = false) => {
 
   const autoMove = () => {
     if (isBot) {
-      while (!move(generateNumber(), generateNumber())) {
-        move(generateNumber(), generateNumber());
+      while (true) {
+        if (move(generateNumber(), generateNumber())) return;
       }
     }
   };
