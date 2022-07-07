@@ -26,7 +26,7 @@ describe('Ship factory function', () => {
     expect(ship.getHP()).toBe(2);
   });
 
-  test('isSunk function (1)', () => {
+  test('isSunk function (1) ship is alive', () => {
     const ship = Ship(2);
 
     ship.hit();
@@ -34,7 +34,7 @@ describe('Ship factory function', () => {
     expect(ship.isSunk()).toBe(false);
   });
 
-  test('isSunk function (2)', () => {
+  test('isSunk function (2) ship is dead', () => {
     const ship = Ship(2);
 
     ship.hit();
