@@ -120,7 +120,7 @@ describe('Gameboard factory function', () => {
     gameboard.placeShip(ship, 0, 0, false);
 
     expect(gameboard.receiveAttack(0, 0)).toBe(true);
-    expect(() => { gameboard.receiveAttack(0, 0); }).toThrow(Error);
+    expect(gameboard.receiveAttack(0, 0)).toBe(false);
     expect(ship.getHP()).toBe(2);
   });
 
@@ -128,7 +128,7 @@ describe('Gameboard factory function', () => {
     const gameboard = Gameboard();
 
     expect(gameboard.receiveAttack(0, 0)).toBe(true);
-    expect(() => { gameboard.receiveAttack(0, 0); }).toThrow(Error);
+    expect(gameboard.receiveAttack(0, 0)).toBe(false);
   });
 
   test('allShipsSunk function (1) all ships are sunk', () => {
@@ -169,8 +169,13 @@ describe('Player factory function', () => {
   });
 
   describe('UI', () => {
-    test.skip('autoMove function', () => {
+    test('autoMove function', () => {
+      const gameboard = Gameboard();
+      const player = Player(gameboard, true);
 
+      for (let n = 0; n < 100; n += 1) player.autoMove();
+
+      expect(gameboard.array[0]).toStrictEqual(['m', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm']);
     });
   });
 });
