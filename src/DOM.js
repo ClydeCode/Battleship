@@ -30,7 +30,7 @@ const refreshGameboard = (gameboard) => {
     column.forEach((row, x) => {
       if (row !== 'x' && row !== 'o') {
         rows.forEach((row) => {
-          if (row.id === `col${y}-row${x}`) row.id = 'fill';
+          if (row.id === `col${y}-row${x}`) row.classList.add('fill');
         });
       }
     });
