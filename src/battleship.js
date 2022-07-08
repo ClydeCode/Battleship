@@ -26,7 +26,7 @@ const Gameboard = () => {
   }
 
   const placeShip = (ship, y, x, onYAxis) => {
-    if (x + ship.length <= 10 && y + ship.length <= 10) {
+    if (x + ship.length <= 10 && y + ship.length <= 10 && x >= 0 && y >= 0) {
       ships.push(ship);
       for (let n = 0; n <= ship.length - 1; n += 1) {
         if (onYAxis) { array[y + n][x] = ship.char; } else { array[y][x + n] = ship.char; }
