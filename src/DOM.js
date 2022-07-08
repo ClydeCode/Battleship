@@ -28,7 +28,7 @@ const refreshGameboard = (gameboard) => {
 
   array.forEach((column, y) => {
     column.forEach((row, x) => {
-      if (row !== 'x' && row !== 'o') {
+      if (gameboard.char !== 'e' && row !== 'x' && row !== 'o') {
         rows.forEach((row) => {
           if (row.id === `${gameboard.char}-col${y}-row${x}`) row.classList.add('fill');
         });
