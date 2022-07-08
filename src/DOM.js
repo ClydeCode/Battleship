@@ -15,7 +15,7 @@ const initGameboards = () => {
         if (gameboard.id === 'enemy') {
           row.classList.add('active');
           row.id = `e-col${n}-row${i}`;
-        } else { row.id = `col${n}-row${i}`; }
+        } else { row.id = `f-col${n}-row${i}`; }
         column.appendChild(row);
       }
     }
@@ -30,17 +30,17 @@ const refreshGameboard = (gameboard) => {
     column.forEach((row, x) => {
       if (row !== 'x' && row !== 'o') {
         rows.forEach((row) => {
-          if (row.id === `col${y}-row${x}`) row.classList.add('fill');
+          if (row.id === `${gameboard.char}-col${y}-row${x}`) row.classList.add('fill');
         });
       }
       if (row === 'x') {
         rows.forEach((row) => {
-          if (row.id === `col${y}-row${x}`) row.classList.add('attack');
+          if (row.id === `${gameboard.char}-col${y}-row${x}`) row.classList.add('attack');
         });
       }
       if (row === 'm') {
         rows.forEach((row) => {
-          if (row.id === `col${y}-row${x}`) row.classList.add('miss');
+          if (row.id === `${gameboard.char}-col${y}-row${x}`) row.classList.add('miss');
         });
       }
     });
