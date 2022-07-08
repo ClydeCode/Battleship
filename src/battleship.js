@@ -14,7 +14,7 @@ const Ship = (length, char) => {
   };
 };
 
-const Gameboard = () => {
+const Gameboard = (char) => {
   const array = [];
   const ships = [];
 
@@ -54,7 +54,7 @@ const Gameboard = () => {
   };
 
   return {
-    placeShip, receiveAttack, allShipsSunk, array,
+    placeShip, receiveAttack, allShipsSunk, array, char,
   };
 };
 
