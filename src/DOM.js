@@ -22,4 +22,19 @@ const initGameboards = () => {
   });
 };
 
-export { initGameboards };
+const refreshGameboard = (gameboard) => {
+  const rows = document.querySelectorAll('.row');
+  const { array } = gameboard;
+
+  array.forEach((column, y) => {
+    column.forEach((row, x) => {
+      if (row !== 'x' && row !== 'o') {
+        rows.forEach((row) => {
+          if (row.id === `col${y}-row${x}`) row.id = 'fill';
+        });
+      }
+    });
+  });
+};
+
+export { initGameboards, refreshGameboard };
