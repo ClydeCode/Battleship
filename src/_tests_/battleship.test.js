@@ -71,6 +71,13 @@ describe('Gameboard factory function', () => {
     expect(() => { gameboard.placeShip(ship, 0, 9, false); }).toThrow(RangeError);
   });
 
+  test('placeShip function (4) out of range', () => {
+    const gameboard = Gameboard();
+    const ship = Ship(2, 'z');
+
+    expect(() => { gameboard.placeShip(ship, 0, -1, false); }).toThrow(RangeError);
+  });
+
   test('receiveAttack function (1) hitting ship', () => {
     const gameboard = Gameboard();
     const ship = Ship(3, 'z');
