@@ -33,6 +33,16 @@ const refreshGameboard = (gameboard) => {
           if (row.id === `col${y}-row${x}`) row.classList.add('fill');
         });
       }
+      if (row === 'x') {
+        rows.forEach((row) => {
+          if (row.id === `col${y}-row${x}`) row.classList.add('attack');
+        });
+      }
+      if (row === 'm') {
+        rows.forEach((row) => {
+          if (row.id === `col${y}-row${x}`) row.classList.add('miss');
+        });
+      }
     });
   });
 };
