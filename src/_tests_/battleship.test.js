@@ -157,7 +157,7 @@ describe('Gameboard factory function', () => {
     const ship1 = Ship(2, 'l');
 
     gameboard.placeShip(ship, 0, 0, false);
-    gameboard.placeShip(ship1, 1, 0, false);
+    gameboard.placeShip(ship1, 2, 0, false);
 
     ship.hit();
     ship1.hit();
