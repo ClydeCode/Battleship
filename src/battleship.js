@@ -25,12 +25,30 @@ const Gameboard = (char) => {
     }
   }
 
+  const isAllowed = (ship, y, x, onYAxis) => {
+    let allow = true;
+    if (!onYAxis) {
+      if (array[y][x - 1] === 'o' && array[y][ship.length + x] === 'o') {
+        for (let n = x - 1; n < ship.length + x + 1; n += 1) {
+          if (!(array[y - 1][n] === 'o' && array[y + 1][n] === 'o')) { allow = false; }
+        }
+      } else allow = false;
+    } else if (array[y - 1][x] === 'o' && array[ship.length + y][x] === 'o') {
+      for (let n = y - 1; n < ship.length + y + 1; n += 1) {
+        if (!(array[n][x - 1] === 'o' && array[n][x + 1] === 'o')) { allow = false; }
+      }
+    } else allow = false;
+    return allow;
+  };
+
   const placeShip = (ship, y, x, onYAxis) => {
     if (x + ship.length <= 10 && y + ship.length <= 10 && x >= 0 && y >= 0) {
-      ships.push(ship);
-      for (let n = 0; n <= ship.length - 1; n += 1) {
-        if (onYAxis) { array[y + n][x] = ship.char; } else { array[y][x + n] = ship.char; }
-      }
+      if (isAllowed(ship, y, x, onYAxis)) {
+        ships.push(ship);
+        for (let n = 0; n <= ship.length - 1; n += 1) {
+          if (onYAxis) { array[y + n][x] = ship.char; } else { array[y][x + n] = ship.char; }
+        }
+      } else { throw RangeError('You cant place here ship!'); }
     } else { throw RangeError('Coordinates are out of range!'); }
   };
 
