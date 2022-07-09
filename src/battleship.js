@@ -27,17 +27,58 @@ const Gameboard = (char) => {
 
   const isAllowed = (ship, y, x, onYAxis) => {
     let allow = true;
+
     if (!onYAxis) {
-      if (array[y][x - 1] === 'o' && array[y][ship.length + x] === 'o') {
-        for (let n = x - 1; n < ship.length + x + 1; n += 1) {
-          if (!(array[y - 1][n] === 'o' && array[y + 1][n] === 'o')) { allow = false; }
+      if (x !== 0) { if (array[y][x - 1] !== 'o') allow = false; }
+
+      if (x + ship.length < 10) { if (array[y][ship.length + x] !== 'o') allow = false; }
+
+      if (y !== 0) {
+        for (let n = x; n < ship.length + x; n += 1) {
+          if (!(array[y - 1][n] === 'o')) allow = false;
         }
-      } else allow = false;
-    } else if (array[y - 1][x] === 'o' && array[ship.length + y][x] === 'o') {
-      for (let n = y - 1; n < ship.length + y + 1; n += 1) {
-        if (!(array[n][x - 1] === 'o' && array[n][x + 1] === 'o')) { allow = false; }
       }
-    } else allow = false;
+
+      if (y !== 0 && x !== 0) {
+        if (!(array[y - 1][x - 1] === 'o')) allow = false;
+      }
+
+      if (y < 9) {
+        for (let n = x; n < ship.length + x; n += 1) {
+          if (!(array[y + 1][n] === 'o')) allow = false;
+        }
+      }
+
+      if (y !== 0 && x + ship.length < 10) {
+        if (!(array[y - 1][x + ship.length] === 'o')) allow = false;
+      }
+
+      if (y < 9 && x !== 0) {
+        if (!(array[y + 1][x - 1] === 'o')) allow = false;
+      }
+
+      if (y < 9 && x + ship.length < 9) {
+        if (!(array[y + 1][x + ship.length] === 'o')) allow = false;
+      }
+
+      // if (y < 8) {
+      //   for (let n = x - 1; n < ship.length + x + 1; n += 1) {
+      //     if (!array[y + 1][n] === 'o') { allow = false; }
+      //   }
+      // }
+    // if (!onYAxis) {
+    //   if (array[y][x - 1] === 'o' && array[y][ship.length + x] === 'o') {
+    //     for (let n = x - 1; n < ship.length + x + 1; n += 1) {
+    //       if (!(array[y - 1][n] === 'o' && array[y + 1][n] === 'o')) { allow = false; }
+    //     }
+    //   } else allow = false;
+    // } else if (array[y - 1][x] === 'o' && array[ship.length + y][x] === 'o') {
+    //   for (let n = y - 1; n < ship.length + y + 1; n += 1) {
+    //     if (!(array[n][x - 1] === 'o' && array[n][x + 1] === 'o')) { allow = false; }
+    //   }
+    // } else allow = false;
+    // return allow;
+    }
     return allow;
   };
 
@@ -48,7 +89,7 @@ const Gameboard = (char) => {
         for (let n = 0; n <= ship.length - 1; n += 1) {
           if (onYAxis) { array[y + n][x] = ship.char; } else { array[y][x + n] = ship.char; }
         }
-      } else { throw RangeError('You cant place here ship!'); }
+      } else { return false; }
     } else { throw RangeError('Coordinates are out of range!'); }
   };
 
