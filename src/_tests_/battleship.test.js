@@ -78,6 +78,24 @@ describe('Gameboard factory function', () => {
     expect(() => { gameboard.placeShip(ship, 0, -1, false); }).toThrow(RangeError);
   });
 
+  test('placeShip function (5) two ships near each other (1)', () => {
+    const gameboard = Gameboard();
+    const ship = Ship(2, 'z');
+    const ship1 = Ship(2, 'q');
+
+    expect(gameboard.placeShip(ship, 0, 0, false)).toBe(true);
+    expect(gameboard.placeShip(ship1, 1, 0, false)).toBe(false);
+  });
+
+  test('placeShip function (6) two ships near each other (2)', () => {
+    const gameboard = Gameboard();
+    const ship = Ship(2, 'z');
+    const ship1 = Ship(2, 'q');
+
+    expect(gameboard.placeShip(ship, 0, 8, false)).toBe(true);
+    expect(gameboard.placeShip(ship1, 1, 6, false)).toBe(false);
+  });
+
   test('receiveAttack function (1) hitting ship', () => {
     const gameboard = Gameboard();
     const ship = Ship(3, 'z');
