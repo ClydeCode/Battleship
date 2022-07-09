@@ -87,13 +87,15 @@ const Gameboard = (char) => {
       if (isAllowed(ship, y, x, onYAxis)) {
         ships.push(ship);
         for (let n = 0; n <= ship.length - 1; n += 1) array[y + n][x] = ship.char;
-      }
+      } else { return false; }
     } else if ((!onYAxis) && x + ship.length <= 10 && x >= 0 && y >= 0) {
       if (isAllowed(ship, y, x, onYAxis)) {
         ships.push(ship);
         for (let n = 0; n <= ship.length - 1; n += 1) array[y][x + n] = ship.char;
-      }
+      } else { return false; }
     } else { throw RangeError('Coordinates are out of range!'); }
+
+    return true;
   };
 
   const receiveAttack = (y, x) => {
