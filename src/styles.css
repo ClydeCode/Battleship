@@ -41,3 +41,15 @@ body {
     background-color: rgb(112, 112, 112);
     cursor: pointer;
 }
+
+.fill {
+    background-color: rgb(126, 219, 255);
+}
+
+.attack {
+    background-color: rgb(185, 28, 28);
+}
+
+.miss {
+    background-color: rgb(56, 56, 56);
+}
