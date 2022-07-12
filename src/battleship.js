@@ -65,7 +65,7 @@ const Gameboard = (char) => {
 
       if (y + ship.length < 10) { if (array[y + ship.length][x] !== 'o') allow = false; }
 
-      if (y !== 0) {
+      if (y !== 0 && x !== 0) {
         for (let n = x; n < ship.length + y; n += 1) {
           if ((array[n][x - 1] !== 'o')) allow = false;
         }
@@ -76,7 +76,7 @@ const Gameboard = (char) => {
       }
 
       if (x < 9) {
-        for (let n = x; n < ship.length + x; n += 1) {
+        for (let n = y; n < ship.length + y; n += 1) {
           if ((array[n][x + 1] !== 'o')) allow = false;
         }
       }
@@ -85,7 +85,7 @@ const Gameboard = (char) => {
         if ((array[y + ship.length][x - 1] !== 'o')) allow = false;
       }
 
-      if (x < 9 && y !== 0) {
+      if (y < 9 && x !== 0) {
         if ((array[y + 1][x - 1] !== 'o')) allow = false;
       }
 
