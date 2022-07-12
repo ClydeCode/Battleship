@@ -113,6 +113,7 @@ const Gameboard = (char) => {
   };
 
   const receiveAttack = (y, x) => {
+    let hitted = false;
     const tempChar = array[y][x];
     if (array[y][x] !== 'm' && array[y][x] !== 'x') {
       array[y][x] = 'm';
@@ -120,10 +121,11 @@ const Gameboard = (char) => {
         if (tempChar === ship.char) {
           ship.hit();
           array[y][x] = 'x';
+          hitted = true;
         }
       });
     } else return false;
-    return true;
+    return hitted ? 'hit' : 'miss';
   };
 
   const allShipsSunk = () => {
@@ -144,7 +146,7 @@ const Player = (eGameboard, isBot = false) => {
   const autoMove = () => {
     if (isBot) {
       while (true) {
-        if (move(generateNumber(), generateNumber())) return;
+        if (move(generateNumber(), generateNumber()) === 'miss') return;
       }
     }
   };
