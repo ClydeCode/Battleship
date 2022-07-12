@@ -120,8 +120,8 @@ describe('Gameboard factory function', () => {
 
     gameboard.placeShip(ship, 0, 0, false);
 
-    expect(gameboard.receiveAttack(0, 1)).toBe(true);
-    expect(gameboard.receiveAttack(0, 2)).toBe(true);
+    expect(gameboard.receiveAttack(0, 1)).toBe('hit');
+    expect(gameboard.receiveAttack(0, 2)).toBe('hit');
     expect(gameboard.array[0]).toStrictEqual(['z', 'x', 'x', 'o', 'o', 'o', 'o', 'o', 'o', 'o']);
   });
 
@@ -131,7 +131,7 @@ describe('Gameboard factory function', () => {
 
     gameboard.placeShip(ship, 0, 0, false);
 
-    expect(gameboard.receiveAttack(0, 3)).toBe(true);
+    expect(gameboard.receiveAttack(0, 3)).toBe('miss');
 
     expect(gameboard.array[0]).toStrictEqual(['z', 'z', 'z', 'm', 'o', 'o', 'o', 'o', 'o', 'o']);
   });
@@ -142,7 +142,7 @@ describe('Gameboard factory function', () => {
 
     gameboard.placeShip(ship, 0, 0, false);
 
-    expect(gameboard.receiveAttack(0, 0)).toBe(true);
+    expect(gameboard.receiveAttack(0, 0)).toBe('hit');
     expect(ship.getHP()).toBe(2);
   });
 
@@ -152,7 +152,7 @@ describe('Gameboard factory function', () => {
 
     gameboard.placeShip(ship, 0, 0, false);
 
-    expect(gameboard.receiveAttack(0, 3)).toBe(true);
+    expect(gameboard.receiveAttack(0, 3)).toBe('miss');
     expect(ship.getHP()).toBe(3);
   });
 
@@ -162,7 +162,7 @@ describe('Gameboard factory function', () => {
 
     gameboard.placeShip(ship, 0, 0, false);
 
-    expect(gameboard.receiveAttack(0, 0)).toBe(true);
+    expect(gameboard.receiveAttack(0, 0)).toBe('hit');
     expect(gameboard.receiveAttack(0, 0)).toBe(false);
     expect(ship.getHP()).toBe(2);
   });
@@ -170,7 +170,7 @@ describe('Gameboard factory function', () => {
   test('receiveAttack function (6) hitting twice (2)', () => {
     const gameboard = Gameboard();
 
-    expect(gameboard.receiveAttack(0, 0)).toBe(true);
+    expect(gameboard.receiveAttack(0, 0)).toBe('miss');
     expect(gameboard.receiveAttack(0, 0)).toBe(false);
   });
 
@@ -207,7 +207,7 @@ describe('Player factory function', () => {
     const gameboard = Gameboard();
     const player = Player(gameboard);
 
-    expect(player.move(0, 0)).toBe(true);
+    expect(player.move(0, 0)).toBe('miss');
     expect(gameboard.array[0]).toStrictEqual(['m', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o']);
   });
 
