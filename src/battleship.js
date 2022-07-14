@@ -29,68 +29,68 @@ const Gameboard = (char) => {
     let allow = true;
 
     if (!onYAxis) {
-      if (x !== 0) { if (array[y][x - 1] !== 'o') allow = false; }
+      if (x !== 0) { if (array[y][x - 1] !== 'o' && array[y][x - 1] !== ship.char) allow = false; }
 
-      if (x + ship.length < 10) { if (array[y][ship.length + x] !== 'o') allow = false; }
+      if (x + ship.length < 10) { if (array[y][ship.length + x] !== 'o' && array[y][ship.length + x] !== ship.char) allow = false; }
 
       if (y !== 0) {
         for (let n = x; n < ship.length + x; n += 1) {
-          if ((array[y - 1][n] !== 'o')) allow = false;
+          if ((array[y - 1][n] !== 'o') && (array[y - 1][n] !== ship.char)) allow = false;
         }
       }
 
       if (y !== 0 && x !== 0) {
-        if ((array[y - 1][x - 1] !== 'o')) allow = false;
+        if ((array[y - 1][x - 1] !== 'o') && (array[y - 1][x - 1] !== ship.char)) allow = false;
       }
 
       if (y < 9) {
         for (let n = x; n < ship.length + x; n += 1) {
-          if ((array[y + 1][n] !== 'o')) allow = false;
+          if ((array[y + 1][n] !== 'o') && (array[y + 1][n] !== ship.char)) allow = false;
         }
       }
 
       if (y !== 0 && x + ship.length < 10) {
-        if ((array[y - 1][x + ship.length] !== 'o')) allow = false;
+        if ((array[y - 1][x + ship.length] !== 'o') && (array[y - 1][x + ship.length] !== ship.char)) allow = false;
       }
 
       if (y < 9 && x !== 0) {
-        if ((array[y + 1][x - 1] !== 'o')) allow = false;
+        if ((array[y + 1][x - 1] !== 'o') && (array[y + 1][x - 1] !== ship.char)) allow = false;
       }
 
       if (y < 9 && x + ship.length < 9) {
-        if ((array[y + 1][x + ship.length] !== 'o')) allow = false;
+        if ((array[y + 1][x + ship.length] !== 'o') && (array[y + 1][x + ship.length] !== ship.char)) allow = false;
       }
     } else {
-      if (y !== 0) { if (array[y - 1][x] !== 'o') allow = false; }
+      if (y !== 0) { if ((array[y - 1][x] !== 'o') && (array[y - 1][x] !== ship.char)) allow = false; }
 
-      if (y + ship.length < 10) { if (array[y + ship.length][x] !== 'o') allow = false; }
+      if (y + ship.length < 10) { if ((array[y + ship.length][x] !== 'o') && (array[y + ship.length][x] !== ship.char)) allow = false; }
 
       if (y !== 0 && x !== 0) {
         for (let n = x; n < ship.length + y; n += 1) {
-          if ((array[n][x - 1] !== 'o')) allow = false;
+          if ((array[n][x - 1] !== 'o') && (array[n][x - 1] !== ship.char)) allow = false;
         }
       }
 
       if (y !== 0 && x !== 0) {
-        if ((array[y - 1][x - 1] !== 'o')) allow = false;
+        if ((array[y - 1][x - 1] !== 'o') && (array[y - 1][x - 1] !== ship.char)) allow = false;
       }
 
       if (x < 9) {
         for (let n = y; n < ship.length + y; n += 1) {
-          if ((array[n][x + 1] !== 'o')) allow = false;
+          if ((array[n][x + 1] !== 'o') && (array[n][x + 1] !== ship.char)) allow = false;
         }
       }
 
       if (x !== 0 && y + ship.length < 10) {
-        if ((array[y + ship.length][x - 1] !== 'o')) allow = false;
+        if ((array[y + ship.length][x - 1] !== 'o') && (array[y + ship.length][x - 1] !== ship.char)) allow = false;
       }
 
       if (y < 9 && x !== 0) {
-        if ((array[y + 1][x - 1] !== 'o')) allow = false;
+        if ((array[y + 1][x - 1] !== 'o') && (array[y + 1][x - 1] !== ship.char)) allow = false;
       }
 
       if (x < 9 && y + ship.length < 10) {
-        if ((array[y + ship.length][x + 1] !== 'o')) allow = false;
+        if ((array[y + ship.length][x + 1] !== 'o') && (array[y + ship.length][x + 1] !== ship.char)) allow = false;
       }
     }
     return allow;
