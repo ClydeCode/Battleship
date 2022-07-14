@@ -134,7 +134,7 @@ const Gameboard = (char) => {
   };
 
   return {
-    placeShip, receiveAttack, allShipsSunk, array, char,
+    placeShip, receiveAttack, allShipsSunk, array, char, ships,
   };
 };
 
