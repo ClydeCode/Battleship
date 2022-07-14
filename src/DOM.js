@@ -60,6 +60,14 @@ const freezeGameboard = () => {
   });
 };
 
+const unfreezeGameboard = () => {
+  const rows = document.querySelectorAll('.row');
+
+  rows.forEach((row) => {
+    row.classList.remove('notActive');
+  });
+};
+
 const endGame = (text) => {
   const rows = document.querySelectorAll('.row');
 
@@ -72,5 +80,5 @@ const endGame = (text) => {
 };
 
 export {
-  initGameboards, refreshGameboard, endGame, freezeGameboard,
+  initGameboards, refreshGameboard, endGame, freezeGameboard, unfreezeGameboard,
 };
