@@ -107,7 +107,7 @@ const Gameboard = (char) => {
         ships.push(ship);
         for (let n = 0; n <= ship.length - 1; n += 1) array[y][x + n] = ship.char;
       } else { return false; }
-    } else { throw RangeError('Coordinates are out of range!'); }
+    } else return false;
 
     return true;
   };
