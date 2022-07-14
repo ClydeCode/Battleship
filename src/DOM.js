@@ -52,6 +52,14 @@ const setText = (text) => {
   divText.innerHTML = text;
 };
 
+const freezeGameboard = () => {
+  const rows = document.querySelectorAll('.row');
+
+  rows.forEach((row) => {
+    row.classList.add('notActive');
+  });
+};
+
 const endGame = (text) => {
   const rows = document.querySelectorAll('.row');
 
@@ -60,8 +68,9 @@ const endGame = (text) => {
   });
 
   setText(text);
+  freezeGameboard();
 };
 
 export {
-  initGameboards, refreshGameboard, endGame,
+  initGameboards, refreshGameboard, endGame, freezeGameboard,
 };
