@@ -47,4 +47,21 @@ const refreshGameboard = (gameboard) => {
   });
 };
 
-export { initGameboards, refreshGameboard };
+const setText = (text) => {
+  const divText = document.querySelector('.text');
+  divText.innerHTML = text;
+};
+
+const endGame = (text) => {
+  const rows = document.querySelectorAll('.row');
+
+  rows.forEach((row) => {
+    row.classList.remove('active');
+  });
+
+  setText(text);
+};
+
+export {
+  initGameboards, refreshGameboard, endGame,
+};
