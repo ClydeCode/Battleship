@@ -57,7 +57,7 @@ const Gameboard = (char) => {
         if ((array[y + 1][x - 1] !== 'o') && (array[y + 1][x - 1] !== ship.char)) allow = false;
       }
 
-      if (y < 9 && x + ship.length < 9) {
+      if (y < 9 && x + ship.length < 10) {
         if ((array[y + 1][x + ship.length] !== 'o') && (array[y + 1][x + ship.length] !== ship.char)) allow = false;
       }
     } else {
@@ -65,8 +65,8 @@ const Gameboard = (char) => {
 
       if (y + ship.length < 10) { if ((array[y + ship.length][x] !== 'o') && (array[y + ship.length][x] !== ship.char)) allow = false; }
 
-      if (y !== 0 && x !== 0) {
-        for (let n = x; n < ship.length + y; n += 1) {
+      if (x !== 0) {
+        for (let n = y; n < ship.length + y; n += 1) {
           if ((array[n][x - 1] !== 'o') && (array[n][x - 1] !== ship.char)) allow = false;
         }
       }
@@ -85,8 +85,8 @@ const Gameboard = (char) => {
         if ((array[y + ship.length][x - 1] !== 'o') && (array[y + ship.length][x - 1] !== ship.char)) allow = false;
       }
 
-      if (y < 9 && x !== 0) {
-        if ((array[y + 1][x - 1] !== 'o') && (array[y + 1][x - 1] !== ship.char)) allow = false;
+      if (y !== 0 && y < 9) {
+        if ((array[y - 1][x + 1] !== 'o') && (array[y - 1][x + 1] !== ship.char)) allow = false;
       }
 
       if (x < 9 && y + ship.length < 10) {
