@@ -68,17 +68,10 @@ describe('Gameboard factory function', () => {
     const gameboard = Gameboard();
     const ship = Ship(2, 'z');
 
-    expect(() => { gameboard.placeShip(ship, 0, 9, false); }).toThrow(RangeError);
+    expect(gameboard.placeShip(ship, 0, 9, false)).toBe(false);
   });
 
-  test('placeShip function (4) out of range', () => {
-    const gameboard = Gameboard();
-    const ship = Ship(2, 'z');
-
-    expect(() => { gameboard.placeShip(ship, 0, -1, false); }).toThrow(RangeError);
-  });
-
-  test('placeShip function (5) two ships near each other (1) X axis', () => {
+  test('placeShip function (4) two ships near each other (1) X axis', () => {
     const gameboard = Gameboard();
     const ship = Ship(2, 'z');
     const ship1 = Ship(2, 'q');
@@ -87,7 +80,7 @@ describe('Gameboard factory function', () => {
     expect(gameboard.placeShip(ship1, 1, 0, false)).toBe(false);
   });
 
-  test('placeShip function (6) two ships near each other (2) X axis', () => {
+  test('placeShip function (5) two ships near each other (2) X axis', () => {
     const gameboard = Gameboard();
     const ship = Ship(2, 'z');
     const ship1 = Ship(2, 'q');
@@ -96,7 +89,7 @@ describe('Gameboard factory function', () => {
     expect(gameboard.placeShip(ship1, 1, 6, false)).toBe(false);
   });
 
-  test('placeShip function (7) two ships near each other (3) Y axis', () => {
+  test('placeShip function (6) two ships near each other (3) Y axis', () => {
     const gameboard = Gameboard();
     const ship = Ship(2, 'z');
     const ship1 = Ship(2, 'q');
@@ -105,7 +98,7 @@ describe('Gameboard factory function', () => {
     expect(gameboard.placeShip(ship1, 5, 7, true)).toBe(false);
   });
 
-  test('placeShip function (8) two ships near each other (4) Y axis', () => {
+  test('placeShip function (7) two ships near each other (4) Y axis', () => {
     const gameboard = Gameboard();
     const ship = Ship(2, 'z');
     const ship1 = Ship(2, 'q');
