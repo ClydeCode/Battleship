@@ -5,9 +5,9 @@ const refreshGameboards = (gameboards) => {
   refreshGameboard(gameboards[1]);
 };
 
-const attackSquare = (y, x, player) => {
-  x = y.split('')[10];
-  y = y.split('')[5];
+const attackSquare = (coords, player) => {
+  const x = coords.split('')[10];
+  const y = coords.split('')[5];
 
   return player.move(y, x);
 };
